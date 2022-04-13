@@ -3,18 +3,16 @@ import { useState, useEffect } from 'react'
 
 function SpotlightCard(data) {
 
-      if(!data) 
-      { return null }
-      else{
-      console.log(data)
+     
+      //console.log(data.data.id)
     return (
     <div>
-          <img src={data?.card_images[0].image_url} alt={data.name}/>    
+          <img src={data.data.card_images[0].image_url} alt={data.data.name}/>    
       </div>
       
     )
       }
-  }
+  
 
 
 function Spotlight() {
@@ -37,7 +35,6 @@ function Spotlight() {
    useEffect(()=>{
     getSpotLight();
    },[])
-   console.log(spotLight)
 
   return (
   <div>
