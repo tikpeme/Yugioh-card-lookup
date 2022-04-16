@@ -1,5 +1,6 @@
 import SearchBar from "./components/SearchBar";
 import Router from "./router/Router";
+import './index.css'
 
 
 

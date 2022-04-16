@@ -16,7 +16,8 @@ function SearchBar() {
   }
 
   return (
-    <div> 
+    <div>
+       
     <form onSubmit={submitHandler}>  
     <input 
     type="text"

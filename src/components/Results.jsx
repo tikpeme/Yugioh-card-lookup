@@ -2,24 +2,41 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-import axios from 'axios';
+
+//import axios from 'axios';
 
 
 function Results() {
   //create states and function to setState
   const [result, setResults] = useState([]);
+  const navigate = useNavigate();
 
   //Use the 'useParams' hook to access piece of URL from when navigated from the SearchBar
   let { name } = useParams();
   //console.log(name)
 
   //Declare function to make api call
-  const getCard = async (name) => {
-    fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${name}`) // API call, no key required
-      .then((res) => res.json()) // Provide information from API JSON format
-      .then((data) => setResults(data.data));
-  };
+  const getCard = async () => {
+      fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${name}`) // API call, no key required
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }else
+        throw new Error('Api fuzzy search call failed');
+      })
+      .then((data) => {
+        setResults(data.data)
+        })
+      .catch((error) => {
+        console.log(error)
+        navigate ("/Error/"+name) //Navigate to Error page
+      })
+  }          
+
+    
   /*
     const getCard = async(name) =>{
      const {data} = await axios.get(`https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${name}` )  // API call, no key require
@@ -27,23 +44,29 @@ function Results() {
   }
   */
   useEffect(() => {
-    getCard(name);
-  }, [name]);
 
-  console.log(result)
+    getCard();
+      
+  });
+
+  //console.log(result)
+
+  //create styling object
+ 
+  
   return (
         <Grid>
-          {result.map((card, idx) => {
+          {result.map && result.map((card, idx) => {
             return <div key={idx}> 
             
-             <img 
+            <SLink to ={'/Card/'+card.name}>
+             <h2>{card.name}</h2>
+             <Img 
              className='image'
              src={card.card_images[0].image_url} 
              alt={card.name} 
-             width = "100px"
-             height={100}
-
              />
+              </SLink>
              </div>;
           })}
         </Grid>
@@ -53,8 +76,23 @@ function Results() {
 const Grid = styled.div`
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-grid-gap: 3rem;
+grid-gap: 70px;
+margin-top: 30px;
+background-color: #a9a1b3;
 `
+
+const Img = styled.img`
+  border: 1rem none;
+  height: 30rem;
+`
+const SLink = styled(NavLink)`
+text-decoration: none;
+
+  
+`
+
+
+
 
 export default Results;
 
