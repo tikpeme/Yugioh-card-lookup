@@ -60,7 +60,7 @@ function Results() {
             return <div key={idx}> 
             
             <SLink to ={'/Card/'+card.name}>
-             <h2>{card.name}</h2>
+             <CardName>{card.name}</CardName>
              <Img 
              className='image'
              src={card.card_images[0].image_url} 
@@ -78,21 +78,20 @@ display: grid;
 grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
 grid-gap: 70px;
 margin-top: 30px;
-background-color: #a9a1b3;
 `
 
 const Img = styled.img`
   border: 1rem none;
-  height: 30rem;
+  height: 20rem;
 `
 const SLink = styled(NavLink)`
 text-decoration: none;
-
   
 `
 
-
-
+const CardName = styled.h2`
+  margin-bottom: 1px;
+`
 
 export default Results;
 
