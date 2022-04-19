@@ -8,31 +8,36 @@ function CardDisplay({data}){//This Function is called after state variable in p
 
   return(data.name && <Plate>
         <Title> {data.name}  </Title>
-        <DetailWrapper>
-      <img src={data.card_images[0].image_url} alt={data.name} />
-      <div >
+        <Cardcontent>
+          <ImgStyled>
+          <img 
+          style ={{ maxWidth:"101%", height:"auto", minWidth:"157px"}}
+          src={data.card_images[0].image_url} 
+          alt={data.name} />
+          </ImgStyled>
+      <DetailWrapper >
        {data.attribute && <Details id={data.attribute}>  <strong>Attribute</strong>:  {data.attribute}</Details>}
-        <Details id={data.type}>  Card Type:  {data.type}</Details>
+        <Details id={data.type}>  <strong>Card Type</strong>: {data.type}</Details>
 
         {/*Check to see if card type to display appropriate detail text.  If monster card, then has race.*/}
-       {data.atk  && <Details id={data.race}> <strong>Race:</strong>  {data.race}</Details>}
+       {data.attribute  && <Details id={data.race}> <strong>Race</strong>:  {data.race}</Details>}
         {/* If non monster card display type of spell or trap card */}
-       {!data.atk && <Details id={data.race}> {data.type} Type:  {data.race}</Details>}
+       {!data.attribute  && <Details id={data.race}> <strong>{data.type} Type</strong>:  {data.race}</Details>}
 
         {/* Check to see if monser card is "LEVEL", "RANK" or LINK. If not link or XYZ then has level */}
-       {(data.type !== "XYZ Monster" && data.type !== "Link Monster")  && <Details id={data.level}> Level:  {data.level}</Details>}
+       {(data.level && data.type !== "XYZ Monster" && data.type !== "Link Monster")  && <Details id={data.level}> <strong>Level</strong>:  {data.level}</Details>}
         {/* If link, has link */}
-        {data.type === "Link Monster" && <Details id={data.level}>  Link: {data.linkval}</Details>}
+        {data.type === "Link Monster" && <Details id={data.level}>  <strong>Link</strong>: {data.linkval}</Details>}
         {/* If XYZ, has Rank */}
-        {data.type === "XYZ Monster" && <Details id={data.level}>  Rank : {data.level}</Details>}
+        {data.type === "XYZ Monster" && <Details id={data.level}>  <strong>Rank</strong>: {data.level}</Details>}
 
-        <Details id={data.desc}> Card Text: <br></br>  {data.desc}</Details>
+        <Details id={data.desc}> <strong>Card Text</strong>: <br></br>  {data.desc}</Details>
         <Stats>
-        {data.atk  && <Details id={data.atk}> ATK {data.atk}</Details>}
-        {data.def && <Details id={data.def}> DEF: {data.def}</Details>}
+        {data.attribute && <Details id={data.atk}> ATK: {data.atk}</Details>}
+        {data.attribute && <Details id={data.def}> DEF: {data.def}</Details>}
         </Stats>
-      </div>
-    </DetailWrapper>
+      </DetailWrapper>
+    </Cardcontent>
   
   </Plate>
 
@@ -77,40 +82,68 @@ const Plate = styled.div`
 border: 2px green solid;
 border-radius: 2rem;
 margin: auto;
-width: 90%;
+max-width: 50%;
+min-width: 356px;
+
 background-color: #aba3a3;
 padding: 2.5rem;
-//background-size:cover;
-    overflow:none;
+text-align: center;
+`
+
+const Cardcontent = styled.div`
+   display: flex;
+   width: 100%;
+  //padding-left: 25%;
+  margin: auto;
+  text-align: left;
+  align-items: flex-start;
+  justify-content: center;
+  flex-flow: center;
+  flex-wrap: wrap ;
+  align-content: space-around;
+`
+const ImgStyled = styled.div`
+flex:1;
+text-align: center;
+padding: 1rem ;
+width: auto;
+
 `
 
 const DetailWrapper = styled.div`
-  width: 100%;
-  padding-left: 25%;
-  margin: auto;
-  display: flex;
-  align-items: center;
+flex:1;
+//display: flex;
+//flex-direction: column;
+justify-content: center;
+align-content: center;
+
+
 
 `
+
 const Details = styled.div`
-width: 20rem;
+//width: 26rem;
 border: 2px black solid;
 border-radius: 0.6rem;
-margin: 1rem;
+margin: 1rem 0;
 padding: 1rem;
+
+min-width: 140px;
 
 font-size: 1.5rem;
 font-weight: 300;
 color: #000000;
+align-self: center;
 
 `
 const Stats = styled.div`
 display: flex;
-width: 50%;
+justify-content: space-between;
 margin-top: -1rem;
 margin-bottom: -1rem;
+//max-width: 20rem;
 
-
+//align-self: center;
 
 `
 const Title = styled.div`
@@ -120,6 +153,10 @@ font-size: 3rem;
 font-weight: 500;
 width:auto;
 text-align: center;
+//padding-bottom: 1rem;
+margin-bottom: 1rem;
+border-bottom: 1px black solid;
+
 `
 
 export default Card
