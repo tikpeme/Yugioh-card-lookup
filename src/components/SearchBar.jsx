@@ -2,8 +2,12 @@ import React from 'react'
 import {useState } from 'react'
 import {FaSearch} from 'react-icons/fa'
 import styled from 'styled-components';
+import {AiOutlineHome} from 'react-icons/ai'
+import { NavLink } from 'react-router-dom';
+
 
 import { useNavigate } from "react-router-dom";
+
 
 
 function SearchBar() {
@@ -17,7 +21,10 @@ function SearchBar() {
   }
 
   return (
-    <div>
+    <Container>
+         <StyledIcons to ={'/'}>
+        <AiOutlineHome></AiOutlineHome>
+    </StyledIcons>
     <StyledForm  onSubmit={submitHandler}> 
     <FaSearch
     style={{position:"relative", left:"25px", color:"white"}}/>
@@ -26,11 +33,21 @@ function SearchBar() {
     name ="card" 
     onChange={(e)=>setInput(e.target.value)}
     value = {input}
+    required
     ></StyledInput>
     </StyledForm>
-    </div>
+    </Container>
   )
 }
+
+const Container = styled.div`
+  
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  margin-top: 2rem;
+`
+
 
 const StyledInput = styled.input`
 border:none;
@@ -41,8 +58,8 @@ padding: 1rem 3rem;
 border:none;
 border-radius: 1rem;
 outline:none;
-width:25%;
-margin: 2.5rem auto;
+width:30%;
+//margin: 2rem 0 auto;
 min-width: 200px;
 //margin-bottom: 2.5rem;
 
@@ -52,10 +69,29 @@ min-width: 200px;
 } 
 `
 const StyledForm = styled.form`
-width: 100%;
+width: auto;
 text-align: center;
   
 `
-
+const StyledIcons = styled(NavLink)`
+    display: flex;
+    //flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    text-decoration: none;
+    background: linear-gradient(35deg, #494949, #313131) ;
+    width: 4rem;
+    height: 4rem;
+    transform: scale(0.9);
+    h4{
+   color:white;
+   font-size: 0.8rem;
+}
+svg{
+    color:white;
+    font-size: 1.5rem;   
+}
+`
 
 export default SearchBar

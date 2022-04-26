@@ -5,6 +5,8 @@ import Home from '../pages/Home';
 import Results from '../components/Results';
 import Card from '../components/Card';
 import ErrorPage from '../components/ErrorPage';
+import Filter from '../components/Filter';
+import Navigation from '../components/Navigation';
 
 function Router() {
   const location = useLocation();
@@ -13,9 +15,11 @@ function Router() {
       <AnimatePresence>   
         <Routes location={location} key={location.pathname}>
           <Route path = '/' element = {<Home />} /> 
-          <Route path = '/searched/:name' element={<Results/>} />
+          <Route path = '/searched/:searchTerm' element={<Results> <Navigation/> </Results>} />
           <Route path = '/card/:cardName' element ={<Card/>} />
           <Route path = '/Error/:cardName' element ={<ErrorPage/>} />
+          <Route path = '/filter/:searchTerm' element ={<Filter/>} />
+
 
                 
         </Routes>

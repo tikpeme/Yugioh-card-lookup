@@ -81,7 +81,8 @@ return (<div>
 const Plate = styled.div`
 border: 2px green solid;
 border-radius: 2rem;
-margin: auto;
+margin: 2rem auto;
+
 max-width: 50%;
 min-width: 356px;
 
@@ -99,7 +100,7 @@ const Cardcontent = styled.div`
   align-items: flex-start;
   justify-content: center;
   flex-flow: center;
-  flex-wrap: wrap ;
+  flex-wrap: wrap;
   align-content: space-around;
 `
 const ImgStyled = styled.div`

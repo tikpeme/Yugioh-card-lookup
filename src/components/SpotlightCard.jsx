@@ -1,13 +1,17 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
+
+
 
 function SpotlightCard(data) {
-
-     
-      //console.log(data.data.id)
+      console.log(data.data.name)
     return (
     <div>
+      <SLink to = {"/Card/"+data.data.name}>
           <img src={data.data.card_images[0].image_url} alt={data.data.name}/>    
+      </SLink>
       </div>
       
     )
@@ -39,9 +43,18 @@ function Spotlight() {
   return (
   <div>
       {spotLight && <SpotlightCard data ={spotLight}/>}
+      
     </div>
     
   )
 }
 
+
+const SLink = styled(NavLink)`
+text-decoration: none;
+color: silver;
+
+`
+
 export default Spotlight
+

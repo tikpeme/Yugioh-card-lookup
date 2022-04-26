@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+import Navigation from './Navigation';
 
 
 //import axios from 'axios';
@@ -11,16 +12,16 @@ import { useNavigate } from "react-router-dom";
 
 function Results() {
   //create states and function to setState
-  const [result, setResults] = useState([]);
+  const [searchResult, setSearchResult] = useState([]);
   const navigate = useNavigate();
 
   //Use the 'useParams' hook to access piece of URL from when navigated from the SearchBar
-  let { name } = useParams();
+  let { searchTerm } = useParams();
   //console.log(name)
 
   //Declare function to make api call
   const getCard = async () => {
-      fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${name}`) // API call, no key required
+      fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${searchTerm}`) // API call, no key required
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -28,19 +29,19 @@ function Results() {
         throw new Error('Api fuzzy search call failed');
       })
       .then((data) => {
-        setResults(data.data)
+        setSearchResult(data.data)
         })
       .catch((error) => {
         console.log(error)
-        navigate ("/Error/"+name) //Navigate to Error page
+        navigate ("/Error/"+searchTerm) //Navigate to Error page
       })
   }          
 
     
   /*
-    const getCard = async(name) =>{
-     const {data} = await axios.get(`https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${name}` )  // API call, no key require
-     if(data) setResults(data);
+    const getCard = async(searchTerm) =>{
+     const {data} = await axios.get(`https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${searchTerm}` )  // API call, no key require
+     if(data) setSearchResult(data);
   }
   */
   useEffect(() => {
@@ -49,14 +50,13 @@ function Results() {
       
   });
 
-  //console.log(result)
-
-  //create styling object
- 
+  //console.log(searchResult)
   
   return (
+    <div>
+      <Navigation></Navigation>
         <Grid>
-          {result.map && result.map((card, idx) => {
+          {searchResult.map && searchResult.map((card, idx) => {
             return <div key={idx}> 
             
             <SLink to ={'/Card/'+card.name}>
@@ -70,6 +70,7 @@ function Results() {
              </div>;
           })}
         </Grid>
+        </div>
   );
 }
 
@@ -77,7 +78,10 @@ const Grid = styled.div`
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
 grid-gap: 70px;
-margin-top: 30px;
+margin: auto 30px;
+text-align: center ;
+
+
 `
 
 const Img = styled.img`
@@ -86,11 +90,14 @@ const Img = styled.img`
 `
 const SLink = styled(NavLink)`
 text-decoration: none;
-  
+color: violet;
+
 `
 
-const CardName = styled.h2`
+const CardName = styled.h3`
   margin-bottom: 1px;
+  text-decoration: none;
+
 `
 
 export default Results;
