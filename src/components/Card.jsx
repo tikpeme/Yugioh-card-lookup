@@ -9,24 +9,30 @@ function CardDisplay({data}){//This Function is called after state variable in p
 
   console.log(data)//Check 
 
-  const setBackgroundColor = () =>{
+  
 
-    //get Dom elements to be modified
-    const detail = document.getElementsByClassName('Details')
-    const plate = document.getElementsByClassName('Plate')
-    console.log(plate.length)
+  useEffect(()=>{
+    const setBackgroundColor = () =>{
 
-    switch (data.type){
-      case 'XYZ Monster':
-        plate[0].style.backgoundColor = '#000000';
-        detail.style.backgoundColor = '#908b8b';
-        break
-      default:
+      //get Dom elements to be modified
+      const detail = document.querySelectorAll('.Details')
+      const plate = document.querySelectorAll('.Plate')
+  
+      switch (data.type){
+        case 'XYZ Monster':
+          plate[0].style.backgoundColor = 'black';
+          detail[0].style.backgoundColor = 'black';
+          console.log('made it')
+
+
+          break
+        default:
+      }
     }
-  }
-  //setBackgroundColor();
+    setBackgroundColor()
+  },[data.type])
 
-  return(data.name && <Plate className='Plate'>
+  return(data.name && <Plate  className='Plate'>
         <Title> {data.name}  </Title>
         <Cardcontent>
           <ImgStyled>
@@ -36,25 +42,25 @@ function CardDisplay({data}){//This Function is called after state variable in p
           alt={data.name} />
           </ImgStyled>
       <DetailWrapper >
-       {data.attribute && <Details id={data.attribute}>  <strong>Attribute</strong>:  {data.attribute}</Details>}
-        <Details id={data.type}>  <strong>Card Type</strong>: {data.type}</Details>
+       {data.attribute && <Details className = 'Details' id={data.attribute}>  <strong>Attribute</strong>:  {data.attribute}</Details>}
+        <Details className = 'Details' id={data.type}>  <strong>Card Type</strong>: {data.type}</Details>
 
         {/*Check to see if card type to display appropriate detail text.  If monster card, then has race.*/}
-       {data.attribute  && <Details id={data.race}> <strong>Race</strong>:  {data.race}</Details>}
+       {data.attribute  && <Details className = 'Details' id={data.race}> <strong>Race</strong>:  {data.race}</Details>}
         {/* If non monster card display type of spell or trap card */}
-       {!data.attribute  && <Details id={data.race}> <strong>{data.type} Type</strong>:  {data.race}</Details>}
+       {!data.attribute  && <Details className = 'Details' id={data.race}> <strong>{data.type} Type</strong>:  {data.race}</Details>}
 
         {/* Check to see if monser card is "LEVEL", "RANK" or LINK. If not link or XYZ then has level */}
-       {(data.level && data.type !== "XYZ Monster" && data.type !== "Link Monster")  && <Details id={data.level}> <strong>Level</strong>:  {data.level}</Details>}
+       {(data.level && data.type !== "XYZ Monster" && data.type !== "Link Monster")  && <Details className = 'Details' id={data.level}> <strong>Level</strong>:  {data.level}</Details>}
         {/* If link, has link */}
-        {data.type === "Link Monster" && <Details id={data.level}>  <strong>Link</strong>: {data.linkval}</Details>}
+        {data.type === "Link Monster" && <Details className = 'Details' id={data.level}>  <strong>Link</strong>: {data.linkval}</Details>}
         {/* If XYZ, has Rank */}
-        {data.type === "XYZ Monster" && <Details id={data.level}>  <strong>Rank</strong>: {data.level}</Details>}
+        {data.type === "XYZ Monster" && <Details className = 'Details' id={data.level}>  <strong>Rank</strong>: {data.level}</Details>}
 
-        <Details id={data.desc}> <strong>Card Text</strong>: <br></br>  {data.desc}</Details>
+        <Details className = 'Details' id={data.desc}> <strong>Card Text</strong>: <br></br>  {data.desc}</Details>
         <Stats>
-        {data.attribute && <Details id={data.atk}> ATK: {data.atk}</Details>}
-        {data.attribute && <Details id={data.def}> DEF: {data.def}</Details>}
+        {data.attribute && <Details className = 'Details' id={data.atk}> ATK: {data.atk}</Details>}
+        {data.attribute && <Details className = 'Details' id={data.def}> DEF: {data.def}</Details>}
         </Stats>
       </DetailWrapper>
     </Cardcontent>
