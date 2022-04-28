@@ -97,7 +97,6 @@ color: violet;
 const CardName = styled.h3`
   margin-bottom: 1px;
   text-decoration: none;
-
 `
 
 export default Results;

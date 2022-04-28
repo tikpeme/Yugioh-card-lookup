@@ -2,11 +2,31 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+
+
+
 function CardDisplay({data}){//This Function is called after state variable in parent function component is updated
 
   console.log(data)//Check 
 
-  return(data.name && <Plate>
+  const setBackgroundColor = () =>{
+
+    //get Dom elements to be modified
+    const detail = document.getElementsByClassName('Details')
+    const plate = document.getElementsByClassName('Plate')
+    console.log(plate.length)
+
+    switch (data.type){
+      case 'XYZ Monster':
+        plate[0].style.backgoundColor = '#000000';
+        detail.style.backgoundColor = '#908b8b';
+        break
+      default:
+    }
+  }
+  //setBackgroundColor();
+
+  return(data.name && <Plate className='Plate'>
         <Title> {data.name}  </Title>
         <Cardcontent>
           <ImgStyled>
@@ -38,7 +58,6 @@ function CardDisplay({data}){//This Function is called after state variable in p
         </Stats>
       </DetailWrapper>
     </Cardcontent>
-  
   </Plate>
 
 )
@@ -47,7 +66,6 @@ function CardDisplay({data}){//This Function is called after state variable in p
 
 
 function Card() {
-
   const [cardData, setCardData] = useState([]);//create states for Card 
 
   let  {cardName}  = useParams(); //retrieve card name from URL paramaeter
