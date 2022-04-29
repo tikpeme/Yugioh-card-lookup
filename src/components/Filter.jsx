@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import Navigation from './Navigation';
 
 function Filter() {
   //For the filter function component, data from the current page is passed into it
@@ -128,6 +127,15 @@ function Filter() {
       >
         Effect
       </SButtons>
+      <SButtons
+        value="Flip Effect Monster"
+        onClick={(e) => {
+          updateFilterArray(e, e.target.value);
+        }}
+      >
+      Flip Effect Monster
+      </SButtons>
+
       <SButtons
         value="Ritual Monster"
         onClick={(e) => {
@@ -261,6 +269,7 @@ const Filters = styled.div`
   width: 100%;
   justify-content:space-between;
 
+
 `
 const FilterButtonContainer = styled.div`
   flex:1;
@@ -269,8 +278,8 @@ const FilterButtonContainer = styled.div`
 `
 
 const SButtons = styled.button`
-  width: 100px;
-  height: 25px;
+  width: 105px;
+  height: 40px;
   border: 2em;
   margin: .4em;
   border-radius: 60%;

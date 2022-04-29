@@ -9,23 +9,73 @@ function CardDisplay({data}){//This Function is called after state variable in p
 
   console.log(data)//Check 
 
-  
 
   useEffect(()=>{
     const setBackgroundColor = () =>{
 
       //get Dom elements to be modified
-      const detail = document.querySelectorAll('.Details')
-      const plate = document.querySelectorAll('.Plate')
+      const details = document.querySelectorAll('.Details')
+      const plate = document.querySelector('.Plate')
+      const title = document.getElementById('cardName')
+
   
       switch (data.type){
         case 'XYZ Monster':
-          plate[0].style.backgoundColor = 'black';
-          detail[0].style.backgoundColor = 'black';
-          console.log('made it')
-
-
+          plate.style.backgroundColor = '#171818';
+          details.forEach((detail)=>{
+            detail.style.backgroundColor = 'grey';
+            detail.style.borderColor = '#d16813';
+           } );
+          title.style.color = 'white'
+          title.style.borderBottom = '1px gold solid';
           break
+        case 'Synchro Monster':
+          plate.style.backgroundColor = '#e9e6e5';
+          details.forEach((detail)=>{
+            detail.style.backgroundColor = '#f5f4f2';
+            detail.style.borderColor = '#d16813';
+           } );
+          title.style.color = 'black'
+          title.style.borderBottom = '1px black solid';
+          break
+          case 'Effect Monster':
+            plate.style.backgroundColor = '#bb6f41';
+            details.forEach((detail)=>{
+              detail.style.backgroundColor = '#e5cabe';
+              detail.style.borderColor = '#d16813';
+             } );
+            title.style.color = 'black'
+            title.style.borderBottom = '1px black solid';
+            break
+            case 'Ritual Effect Monster' :
+              plate.style.backgroundColor = '#527abe';
+              details.forEach((detail)=>{
+                detail.style.backgroundColor = '#c4d3e4';
+                detail.style.borderColor = '#d16813';
+               } );
+              title.style.color = 'black'
+              title.style.borderBottom = '1px black solid';
+              break
+              case 'Ritual Monster':
+                plate.style.backgroundColor = '#527abe';
+                details.forEach((detail)=>{
+                  detail.style.backgroundColor = '#c4d3e4';
+                  detail.style.borderColor = '#d16813';
+                 } );
+                title.style.color = 'black'
+                title.style.borderBottom = '1px black solid';
+                break
+                case 'Fusion Monster':
+                plate.style.backgroundColor = '#893f97';
+                details.forEach((detail)=>{
+                  detail.style.backgroundColor = '#dbc6e1';
+                  detail.style.borderColor = '#d16813';
+                 } );
+                title.style.color = 'black'
+                title.style.borderBottom = '1px black solid';
+                break
+
+
         default:
       }
     }
@@ -33,7 +83,7 @@ function CardDisplay({data}){//This Function is called after state variable in p
   },[data.type])
 
   return(data.name && <Plate  className='Plate'>
-        <Title> {data.name}  </Title>
+        <Title id ='cardName'> {data.name.toUpperCase()}  </Title>
         <Cardcontent>
           <ImgStyled>
           <img 
@@ -103,12 +153,15 @@ return (<div>
 
 
 const Plate = styled.div`
-border: 2px green solid;
-border-radius: 2rem;
+border: 2px grey solid;
+border-radius: 1rem;
 margin: 2rem auto;
 
 max-width: 50%;
 min-width: 356px;
+
+box-shadow: 0 0 30px 5px grey ;
+
 
 background-color: #aba3a3;
 padding: 2.5rem;
