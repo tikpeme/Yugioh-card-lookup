@@ -7,7 +7,7 @@ import Navigation from "./components/Navigation";
 
 function App() {
   return (
-      <div>      
+      <div style ={{textAlign:"center"}}>      
       <SearchBar/>
       <Router/>
       

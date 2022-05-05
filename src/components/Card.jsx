@@ -122,11 +122,13 @@ function CardDisplay({data}){//This Function is called after state variable in p
 
 
 function Card() {
+
   const [cardData, setCardData] = useState([]);//create states for Card 
 
   let  {cardName}  = useParams(); //retrieve card name from URL paramaeter
 
   //console.log(CardName)//Check 
+  console.log(cardData)//Check 
 
 useEffect(()=>{
     //Create function to make API call

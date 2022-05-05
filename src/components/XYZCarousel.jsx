@@ -13,25 +13,28 @@ function XYZCarousel() {
 
     const [xyzArray, setXyzArray] =  useState([]);
 
+    const[width, setWidth] = useState(0);
+    const carousel = useRef();
+
 
     useEffect(()=>{
         //make api call to server for XYZ monsters of rank 7 and above
     const getXyz = async() =>{
         axios.get(`https://db.ygoprodeck.com/api/v7/cardinfo.php?type=XYZ%20Monster&level=gt7`)
             .then(response =>{ 
-                setXyzArray(response.data.data)
-                console.log(response.data.data)}) 
+                setXyzArray(response.data.data)}) 
 /*
         if (data){
             console.log("succede request")
             console.log(data)
             setXyzArray(data.data);
-
         } 
         else console.log("failed request")
         */
     };
     getXyz()
+  //console.log(carousel.current.scrollWidth, carousel.current.offsetWidth)
+  //  setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth )
     },[])
 
     //apply Fisher-Yates (aka Knuth) shuffle
@@ -55,12 +58,25 @@ function XYZCarousel() {
 
 
   return (
-      <motion.div className='carousel'>
-          <motion.div drag = 'x' className='inner-carousel'>
+      <motion.div ref ={carousel} className='carousel'>
+          <motion.div 
+          drag = 'x' 
+          dragConstraints={{right:0, left:-15093.3}} 
+          initial = {{x : 0}}
+          animate = {{x:-15093}}
+          transition={{
+            type: "spring",
+            damping : 100000,
+            mass: 100000,
+            repeat: Infinity
+
+           
+        }}
+          className='inner-carousel'>
               {
               randomizeArray(xyzArray).map((card)=>{
                   return(
-                  <motion.div className='item'>
+                  <motion.div className='item' key={card.id}>
                     <NavLink to = {"/Card/"+card.name}>
 
                       <img src={card.card_images[0].image_url} alt={card.name} />

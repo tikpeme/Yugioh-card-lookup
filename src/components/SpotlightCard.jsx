@@ -5,21 +5,7 @@ import styled from 'styled-components';
 
 
 
-function SpotlightCard(data) {
-      console.log(data.data.name)
-
-    return (
-    <Sdiv>
-      <SLink to = {"/Card/"+data.data.name}>
-        <Sh2> You drew : {data.data.name}!</Sh2>
-          <img src={data.data.card_images[0].image_url} alt={data.data.name}/>    
-      </SLink>
-      </Sdiv>
-      
-    )
-      }
-
-function Spotlight() {
+function SpotlightCard() {
   
   const [spotLight, setSpotLight] = useState(); //Create a state for the random spotlight card
 
@@ -35,10 +21,9 @@ function Spotlight() {
 
   const drawCard =()=>{
     getSpotLight();
+    console.log(spotLight.name)
 
    }
-
-  
    useEffect(()=>{
     
     getSpotLight();
@@ -48,8 +33,19 @@ function Spotlight() {
 
   return (
   <div>
-      {spotLight && <SpotlightCard data ={spotLight}/>}
-      <button  onClick={() => drawCard}> Draw </button>
+      {spotLight && 
+      
+      <Sdiv>
+      <SLink to = {"/Card/"+spotLight.name}>
+        <Sh2> You drew : {spotLight.name}!</Sh2>
+          <img src={spotLight.card_images[0].image_url} alt={spotLight.name}/>    
+      </SLink>
+      <Sbutton  onClick={() => drawCard()}> Draw </Sbutton>
+      </Sdiv>}
+      { spotLight &&  console.log(spotLight.name) }
+
+
+      
 
     </div>
     
@@ -63,13 +59,25 @@ color: silver;
 `
 
 const Sdiv = styled.div`
-  text-align: center;
+width: auto;
   margin: 50px auto;
+
 `
 const Sh2 =styled.h2`
 font-family: 'Shrikhand', cursive;
 font-weight: 100;
-
 `
-export default Spotlight
+
+const Sbutton = styled.button`
+cursor: pointer;
+display: block;
+margin: 10px auto;
+font-size: 40px;
+width: auto;
+height: 100px;
+border-radius: 50%;
+background-color: brown;
+  
+`
+export default SpotlightCard
 

@@ -1,4 +1,4 @@
-import Spotlight from '../components/SpotlightCard'
+import SpotlightCard from '../components/SpotlightCard'
 import XYZCarousel from '../components/XYZCarousel'
 
 function Home() {
@@ -7,7 +7,7 @@ function Home() {
 
   return (
     <div>
-    <Spotlight/>
+    <SpotlightCard/>
     <XYZCarousel/>
     </div>
 

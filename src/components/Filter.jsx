@@ -168,15 +168,7 @@ function Filter() {
       >
         Synchro 
       </SButtons>
-      <SButtons
-        value="Synchro Effect Monster"
-        onClick={(e) => {
-          updateFilterArray(e, e.target.value);
-        }}
-      >
-        Synchro Effect 
-      </SButtons>
-
+      
       <SButtons
         value="XYZ Monster"
         onClick={(e) => {
