@@ -40,7 +40,7 @@ function SpotlightCard() {
         <Sh2> You drew : {spotLight.name}!</Sh2>
           <img src={spotLight.card_images[0].image_url} alt={spotLight.name}/>    
       </SLink>
-      <Sbutton  onClick={() => drawCard()}> Draw </Sbutton>
+      <Sbutton  onClick={() => drawCard()}> Draw! </Sbutton>
       </Sdiv>}
       { spotLight &&  console.log(spotLight.name) }
 
@@ -65,7 +65,10 @@ width: auto;
 `
 const Sh2 =styled.h2`
 font-family: 'Shrikhand', cursive;
+color: rgb(220, 218, 218);
 font-weight: 100;
+text-shadow: 2px 2px #ba1bba;
+
 `
 
 const Sbutton = styled.button`
@@ -77,6 +80,10 @@ width: auto;
 height: 100px;
 border-radius: 50%;
 background-color: brown;
+color: rgb(220, 218, 218);
+font-family: 'Shrikhand';
+text-shadow: 2px 2px #ba1bba;
+
   
 `
 export default SpotlightCard
