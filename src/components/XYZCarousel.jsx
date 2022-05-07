@@ -2,7 +2,6 @@ import React from 'react'
 import {useRef,useEffect,useState} from 'react'
 import {motion} from 'framer-motion'
 import axios from 'axios';
-import { createRoutesFromChildren } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
 
@@ -13,7 +12,6 @@ function XYZCarousel() {
 
     const [xyzArray, setXyzArray] =  useState([]);
 
-    const[width, setWidth] = useState(0);
     const carousel = useRef();
 
 
@@ -34,7 +32,7 @@ function XYZCarousel() {
         let currentIndex = array.length,  randomIndex;
 
         // While there remain elements to shuffle.
-        while (currentIndex != 0) {
+        while (currentIndex !== 0) {
       
           // Pick a remaining element.
           randomIndex = Math.floor(Math.random() * currentIndex);
@@ -44,13 +42,16 @@ function XYZCarousel() {
           [array[currentIndex], array[randomIndex]] = [
             array[randomIndex], array[currentIndex]];
         }
-      
+
+        array.length = 72// Set number of  cards in carousel to be the same
         return array;
       }
 
 
-  return (
-<motion.div ref ={carousel} className='carousel'>
+  return ( xyzArray &&
+    <div>
+      <h1>  XYZ Monsters </h1>
+  <motion.div ref ={carousel} className='carousel'>
           <motion.div 
           drag = 'x' 
           dragConstraints={{right:0, left:-15093.3}} 
@@ -61,8 +62,6 @@ function XYZCarousel() {
             damping : 100000,
             mass: 100000,
             repeat: Infinity
-
-           
         }}
           className='inner-carousel'>
               {
@@ -79,7 +78,10 @@ function XYZCarousel() {
                     })}
           </motion.div>
       </motion.div>
-  );
+      </div>
+
+      
+      );
 }
 
 
