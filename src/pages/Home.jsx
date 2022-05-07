@@ -1,4 +1,5 @@
 import SpotlightCard from '../components/SpotlightCard'
+import SynchroCarousel from '../components/SynchroCarousel'
 import XYZCarousel from '../components/XYZCarousel'
 
 function Home() {
@@ -9,6 +10,7 @@ function Home() {
     <div>
     <SpotlightCard/>
     <XYZCarousel/>
+    <SynchroCarousel/>
     </div>
 
   )

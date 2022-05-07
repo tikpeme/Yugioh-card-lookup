@@ -23,14 +23,6 @@ function XYZCarousel() {
         axios.get(`https://db.ygoprodeck.com/api/v7/cardinfo.php?type=XYZ%20Monster&level=gt7`)
             .then(response =>{ 
                 setXyzArray(response.data.data)}) 
-/*
-        if (data){
-            console.log("succede request")
-            console.log(data)
-            setXyzArray(data.data);
-        } 
-        else console.log("failed request")
-        */
     };
     getXyz()
   //console.log(carousel.current.scrollWidth, carousel.current.offsetWidth)
@@ -58,7 +50,7 @@ function XYZCarousel() {
 
 
   return (
-      <motion.div ref ={carousel} className='carousel'>
+<motion.div ref ={carousel} className='carousel'>
           <motion.div 
           drag = 'x' 
           dragConstraints={{right:0, left:-15093.3}} 

@@ -133,7 +133,7 @@ function Filter() {
           updateFilterArray(e, e.target.value);
         }}
       >
-      Flip Effect Monster
+      Flip Effect
       </SButtons>
 
       <SButtons
@@ -168,7 +168,7 @@ function Filter() {
       >
         Synchro 
       </SButtons>
-      
+
       <SButtons
         value="XYZ Monster"
         onClick={(e) => {
