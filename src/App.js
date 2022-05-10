@@ -1,20 +1,14 @@
 import SearchBar from "./components/SearchBar";
 import Router from "./router/Router";
-import './index.css'
+import "./index.css";
 import Navigation from "./components/Navigation";
-
-
 
 function App() {
   return (
-      <div style ={{textAlign:"center"}}>      
-      <SearchBar/>
-      <Router/>
-      
-      </div>
-    
-    
-  
+    <div style={{ textAlign: "center" }}>
+      <SearchBar />
+      <Router />
+    </div>
   );
 }
 

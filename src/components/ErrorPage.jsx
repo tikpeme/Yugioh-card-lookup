@@ -1,18 +1,20 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import React from "react";
+import { useParams } from "react-router-dom";
 
 function ErrorPage() {
-
-    let {cardName} = useParams();//Retrieve the search term from the URL
+  let { cardName } = useParams(); //Retrieve the search term from the URL
 
   return (
     //Display the Error Message
-    <div>OOPS!! something when wrong, Go back or try another search term other than {`"${cardName}"`}</div>
-  )
+    <div>
+      OOPS!! something when wrong, Go back or try another search term other than{" "}
+      {`"${cardName}"`}
+    </div>
+  );
 }
 
 /*
 Add styling to center message on screen
 */
 
-export default ErrorPage
+export default ErrorPage;

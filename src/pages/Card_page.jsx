@@ -1,14 +1,12 @@
-import React from 'react'
-import Card from '../components/Card'
+import React from "react";
+import Card from "../components/Card";
 
 function Card_page() {
   return (
-      <div>
-    <Card/>
-
-      </div>
-    
-  )
+    <div>
+      <Card />
+    </div>
+  );
 }
 
-export default Card_page
+export default Card_page;

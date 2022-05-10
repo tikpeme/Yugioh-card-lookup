@@ -1,8 +1,8 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useParams, NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import React from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams, NavLink } from "react-router-dom";
+import styled from "styled-components";
 
 function Filter() {
   //For the filter function component, data from the current page is passed into it
@@ -11,12 +11,11 @@ function Filter() {
 
   const [filterResults, setFilterResults] = useState([]);
 
-
   useEffect(() => {
     // re-make api call, same as component that Filter componenet was called in
     const getCards = async () => {
       const { data } = await axios.get(
-        `https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${searchTerm}`,
+        `https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${searchTerm}`
       ); // API call, no key require
       if (data) setFilterResults(data.data);
     };
@@ -30,7 +29,6 @@ function Filter() {
   const [filterArray, setFilterArray] = useState([]);
 
   const updateFilterArray = (e, buttonValue) => {
-
     if (filterArray.includes(buttonValue)) {
       //if value is in array already "unselect" or remove from array and change color
       const indexofFilterTerm = filterArray.findIndex((str) => {
@@ -38,10 +36,10 @@ function Filter() {
       });
       filterArray.splice(indexofFilterTerm, 1);
       //Call Button color update function
-      buttonColorReset(e)
-        } else {
+      buttonColorReset(e);
+    } else {
       filterArray.push(buttonValue);
-      buttonColorUpdate(e)
+      buttonColorUpdate(e);
     }
     setFilterArray([...filterArray]);
     //console.log(filterArray);
@@ -58,7 +56,10 @@ function Filter() {
       for (let i = 0; i < filterArray.length; i++) {
         //let tempArr = [];
         for (let j = 0; j < filterResults.length; j++) {
-          if ((filterArray[i] === filterResults[j].type) || (filterArray[i] === filterResults[j].race) ) {
+          if (
+            filterArray[i] === filterResults[j].type ||
+            filterArray[i] === filterResults[j].race
+          ) {
             //console.log(filterResults[j])
             //console.log(tempArr)
             newCardArr.push(filterResults[j]);
@@ -74,32 +75,22 @@ function Filter() {
     }
   };
 
+  const buttonColorReset = (e) => {
+    if (e) {
+      e.target.style.backgroundColor = "#bcb9b9";
+    } else {
+      let buttonElems = document.getElementsByTagName("button");
+      console.log(buttonElems);
 
-  const buttonColorReset = (e)=>{
-    if(e){
-    e.target.style.backgroundColor = '#bcb9b9';
-    }
-    else{
-      let buttonElems = document.getElementsByTagName('button')
-      console.log(buttonElems)
-
-      for (let i =0; i<buttonElems.length; i++){
-        buttonElems[i].style.backgroundColor='white'
+      for (let i = 0; i < buttonElems.length; i++) {
+        buttonElems[i].style.backgroundColor = "white";
       }
-        
-    
-
     }
+  };
 
-  }
-
-  const buttonColorUpdate = (e)=>{
-    
-    e.target.style.backgroundColor = 'Salmon';
-
-
-  }
-
+  const buttonColorUpdate = (e) => {
+    e.target.style.backgroundColor = "Salmon";
+  };
 
   //console.log(filterResults)
   //console.log(filterCards())
@@ -108,122 +99,119 @@ function Filter() {
 
   return (
     <div>
-      <Filters> 
+      <Filters>
+        <FilterButtonContainer id="Monster">
+          <SButtons
+            value="Normal Monster"
+            onClick={(e) => {
+              updateFilterArray(e, e.target.value);
+            }}
+          >
+            Normal
+          </SButtons>
+          <SButtons
+            value="Effect Monster"
+            onClick={(e) => {
+              updateFilterArray(e, e.target.value);
+            }}
+          >
+            Effect
+          </SButtons>
+          <SButtons
+            value="Flip Effect Monster"
+            onClick={(e) => {
+              updateFilterArray(e, e.target.value);
+            }}
+          >
+            Flip Effect
+          </SButtons>
 
-      <FilterButtonContainer id="Monster">  
-      <SButtons
-        value="Normal Monster"
-        onClick={(e) => {
-          updateFilterArray(e, e.target.value);
-        }}
-      >
-        Normal
-      </SButtons>
-      <SButtons
-        value="Effect Monster"
-        onClick={(e) => {
-          updateFilterArray(e, e.target.value);
-        }}
-      >
-        Effect
-      </SButtons>
-      <SButtons
-        value="Flip Effect Monster"
-        onClick={(e) => {
-          updateFilterArray(e, e.target.value);
-        }}
-      >
-      Flip Effect
-      </SButtons>
+          <SButtons
+            value="Ritual Monster"
+            onClick={(e) => {
+              updateFilterArray(e, e.target.value);
+            }}
+          >
+            Ritual Normal
+          </SButtons>
+          <SButtons
+            value="Ritual Effect Monster"
+            onClick={(e) => {
+              updateFilterArray(e, e.target.value);
+            }}
+          >
+            Ritual Effect
+          </SButtons>
+          <SButtons
+            value="Fusion Monster"
+            onClick={(e) => {
+              updateFilterArray(e, e.target.value);
+            }}
+          >
+            Fusion
+          </SButtons>
+          <SButtons
+            value="Synchro Monster"
+            onClick={(e) => {
+              updateFilterArray(e, e.target.value);
+            }}
+          >
+            Synchro
+          </SButtons>
 
-      <SButtons
-        value="Ritual Monster"
-        onClick={(e) => {
-          updateFilterArray(e, e.target.value);
-        }}
-      >
-        Ritual  Normal 
-      </SButtons>
-      <SButtons
-        value="Ritual Effect Monster"
-        onClick={(e) => {
-          updateFilterArray(e, e.target.value);
-        }}
-      >
-        Ritual Effect 
-      </SButtons>
-      <SButtons
-        value="Fusion Monster"
-        onClick={(e) => {
-          updateFilterArray(e, e.target.value);
-        }}
-      >
-        Fusion 
-      </SButtons>
-      <SButtons
-        value="Synchro Monster"
-        onClick={(e) => {
-          updateFilterArray(e, e.target.value);
-        }}
-      >
-        Synchro 
-      </SButtons>
+          <SButtons
+            value="XYZ Monster"
+            onClick={(e) => {
+              updateFilterArray(e, e.target.value);
+            }}
+          >
+            XYZ
+          </SButtons>
 
-      <SButtons
-        value="XYZ Monster"
-        onClick={(e) => {
-          updateFilterArray(e, e.target.value);
-        }}
-      >
-        XYZ 
-      </SButtons>
+          <SButtons
+            value="Link Monster"
+            onClick={(e) => {
+              updateFilterArray(e, e.target.value);
+            }}
+          >
+            Link
+          </SButtons>
+        </FilterButtonContainer>
 
-      <SButtons
-        value="Link Monster"
-        onClick={(e) => {
-          updateFilterArray(e, e.target.value);
-        }}
-      >
-        Link 
-      </SButtons>
+        <FilterButtonContainer id="Spell">
+          <SButtons
+            value="Spell Card"
+            onClick={(e) => {
+              updateFilterArray(e, e.target.value);
+            }}
+          >
+            Spell Card
+          </SButtons>
+        </FilterButtonContainer>
 
-      </FilterButtonContainer>  
-
-      <FilterButtonContainer id="Spell">  
-
-      <SButtons
-        value="Spell Card"
-        onClick={(e) => {
-          updateFilterArray(e, e.target.value);
-        }}
-      >
-        Spell Card
-      </SButtons>
-
-      </FilterButtonContainer>  
-
-      <FilterButtonContainer id="Trap">  
-
-      <SButtons
-        value="Trap Card"
-        onClick={(e) => {
-          updateFilterArray(e, e.target.value);
-        }}
-      >
-        Trap Card
-      </SButtons>
-      </FilterButtonContainer>  
-
-
+        <FilterButtonContainer id="Trap">
+          <SButtons
+            value="Trap Card"
+            onClick={(e) => {
+              updateFilterArray(e, e.target.value);
+            }}
+          >
+            Trap Card
+          </SButtons>
+        </FilterButtonContainer>
       </Filters>
       <Grid>
         {filterCards &&
           filterCards()?.map((card, idx) => {
             return (
               <div key={idx}>
-                <SLink to={'/Card/' + card.name}>
+                <SLink to={"/Card/" + card.name}>
                   <CardName>{card.name}</CardName>
-                  <Img className="image" src={card.card_images[0].image_url} alt={card.name} />
+                  <Img
+                    className="image"
+                    src={card.card_images[0].image_url}
+                    alt={card.name}
+                  />
                 </SLink>
               </div>
             );
@@ -239,7 +227,6 @@ const Grid = styled.div`
   grid-gap: 70px;
   margin: auto 30px;
   text-align: center;
-  
 `;
 
 const Img = styled.img`
@@ -247,38 +234,31 @@ const Img = styled.img`
   height: 20rem;
 `;
 const SLink = styled(NavLink)`
-text-decoration: none;
-color: violet;
-
-`
+  text-decoration: none;
+  color: violet;
+`;
 
 const CardName = styled.h3`
   margin-bottom: 1px;
   text-decoration: none;
-`
+`;
 const Filters = styled.div`
   display: flex;
   width: 100%;
-  justify-content:space-between;
-
-
-`
+  justify-content: space-between;
+`;
 const FilterButtonContainer = styled.div`
-  flex:1;
+  flex: 1;
   margin-bottom: 1px;
   text-decoration: none;
-`
+`;
 
 const SButtons = styled.button`
   width: 105px;
   height: 40px;
   border: 2em;
-  margin: .4em;
+  margin: 0.4em;
   border-radius: 60%;
-  background-color: #bcb9b9 ;
-
-
-  
-
-`
+  background-color: #bcb9b9;
+`;
 export default Filter;
