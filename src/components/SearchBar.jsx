@@ -4,6 +4,7 @@ import { FaSearch } from "react-icons/fa";
 import styled from "styled-components";
 import { AiOutlineHome } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
+import { AiFillProfile } from "react-icons/ai";
 
 import { useNavigate } from "react-router-dom";
 
@@ -36,6 +37,9 @@ function SearchBar() {
           required
         ></StyledInput>
       </StyledForm>
+      <StyledIcons to={"/filter/all"}>
+        <AiFillProfile></AiFillProfile>
+      </StyledIcons>
     </Container>
   );
 }

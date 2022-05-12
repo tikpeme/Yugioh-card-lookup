@@ -12,12 +12,20 @@ function Filter() {
   const [filterResults, setFilterResults] = useState([]);
 
   useEffect(() => {
-    // re-make api call, same as component that Filter componenet was called in
+    // re-make api call, same as component that Filter componenet was called in or for all cards
+
     const getCards = async () => {
-      const { data } = await axios.get(
-        `https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${searchTerm}`
-      ); // API call, no key require
-      if (data) setFilterResults(data.data);
+      if (searchTerm === "all") {
+        const { data } = await axios.get(
+          `https://db.ygoprodeck.com/api/v7/cardinfo.php`
+        );
+        if (data) setFilterResults(data.data);
+      } else {
+        const { data } = await axios.get(
+          `https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${searchTerm}`
+        ); // API call, no key require
+        if (data) setFilterResults(data.data);
+      }
     };
     getCards();
   }, [searchTerm]);
@@ -52,6 +60,7 @@ function Filter() {
     let newCardArr = filterResults;
 
     if (filterArray.length > 0) {
+      //if there are filter terms selected
       let newCardArr = [];
       for (let i = 0; i < filterArray.length; i++) {
         //let tempArr = [];
