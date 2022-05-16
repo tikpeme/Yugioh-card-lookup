@@ -134,6 +134,14 @@ function Filter() {
           >
             Flip Effect
           </SButtons>
+          <SButtons
+            value="Union Effect Monster"
+            onClick={(e) => {
+              updateFilterArray(e, e.target.value);
+            }}
+          >
+            Union
+          </SButtons>
 
           <SButtons
             value="Ritual Monster"

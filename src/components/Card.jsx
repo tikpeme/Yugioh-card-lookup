@@ -16,6 +16,15 @@ function CardDisplay({ data }) {
       const title = document.getElementById("cardName");
 
       switch (data.type) {
+        case "Normal Monster":
+          plate.style.backgroundColor = "#c18f4d";
+          details.forEach((detail) => {
+            detail.style.backgroundColor = "#ecdec4";
+            detail.style.borderColor = "#d16813";
+          });
+          title.style.color = "black";
+          title.style.borderBottom = "1px black solid";
+          break;
         case "XYZ Monster":
           plate.style.backgroundColor = "#171818";
           details.forEach((detail) => {
@@ -35,6 +44,16 @@ function CardDisplay({ data }) {
           title.style.borderBottom = "1px black solid";
           break;
         case "Effect Monster":
+          plate.style.backgroundColor = "#bb6f41";
+          details.forEach((detail) => {
+            detail.style.backgroundColor = "#e5cabe";
+            detail.style.borderColor = "#d16813";
+          });
+          title.style.color = "black";
+          title.style.borderBottom = "1px black solid";
+          break;
+
+        case "Union Effect Monster":
           plate.style.backgroundColor = "#bb6f41";
           details.forEach((detail) => {
             detail.style.backgroundColor = "#e5cabe";
@@ -199,7 +218,7 @@ function Card() {
   let { cardId } = useParams(); //retrieve card name from URL paramaeter
 
   //console.log(CardName)//Check
-  console.log(cardData); //Check
+  //console.log(cardData); //Check
 
   useEffect(() => {
     //Create function to make API call
