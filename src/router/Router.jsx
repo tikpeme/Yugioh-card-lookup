@@ -24,7 +24,7 @@ function Router() {
             </Results>
           }
         />
-        <Route path="/card/:cardName" element={<Cardpage />} />
+        <Route path="/Card/:cardId" element={<Cardpage />} />
         <Route path="/Error/:cardName" element={<ErrorPage />} />
         <Route path="/filter/:searchTerm" element={<Filter />} />
       </Routes>

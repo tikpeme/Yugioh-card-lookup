@@ -22,6 +22,8 @@ function SpotlightCard() {
   const drawCard = () => {
     getSpotLight();
     console.log(spotLight.name);
+    console.log(spotLight);
+
     //let innerCard = document.querySelector(".flip-card-inner"); //implement later
   };
   useEffect(() => {
@@ -32,7 +34,7 @@ function SpotlightCard() {
     <div>
       {spotLight && (
         <Sdiv>
-          <SLink to={"/Card/" + spotLight.name}>
+          <SLink to={"/Card/" + spotLight.id}>
             <Sh2> You drew : {spotLight.name}!</Sh2>
             <div className="flip-card">
               <div className="flip-card-inner">

@@ -214,7 +214,7 @@ function Filter() {
           filterCards()?.map((card, idx) => {
             return (
               <div key={idx}>
-                <SLink to={"/Card/" + card.name}>
+                <SLink to={"/Card/" + card.id}>
                   <CardName>{card.name}</CardName>
                   <Img
                     className="image"

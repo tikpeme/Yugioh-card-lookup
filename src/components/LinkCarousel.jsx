@@ -22,6 +22,7 @@ function LinkCarousel() {
       console.log(linkArray);
     };
     getLinkCards();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //Filter array for card with Link Value of greater than 3
@@ -71,7 +72,7 @@ function LinkCarousel() {
             {filterLinkVal(linkArray).map((card) => {
               return (
                 <motion.div className="item" key={card.id}>
-                  <NavLink to={"/Card/" + card.name}>
+                  <NavLink to={"/Card/" + card.id}>
                     <img src={card.card_images[0].image_url} alt={card.name} />
                   </NavLink>
                 </motion.div>

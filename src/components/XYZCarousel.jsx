@@ -70,7 +70,7 @@ function XYZCarousel() {
             {randomizeArray(xyzArray).map((card) => {
               return (
                 <motion.div className="item" key={card.id}>
-                  <NavLink to={"/Card/" + card.name}>
+                  <NavLink to={"/Card/" + card.id}>
                     <img src={card.card_images[0].image_url} alt={card.name} />
                   </NavLink>
                 </motion.div>

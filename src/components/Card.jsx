@@ -196,7 +196,7 @@ function CardDisplay({ data }) {
 function Card() {
   const [cardData, setCardData] = useState([]); //create states for Card
 
-  let { cardName } = useParams(); //retrieve card name from URL paramaeter
+  let { cardId } = useParams(); //retrieve card name from URL paramaeter
 
   //console.log(CardName)//Check
   console.log(cardData); //Check
@@ -204,13 +204,13 @@ function Card() {
   useEffect(() => {
     //Create function to make API call
     const getCard = async () => {
-      fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?name=${cardName}`)
+      fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${cardId}`)
         .then((res) => res.json()) // Provide information from API JSON format
         .then(({ data }) => setCardData(data[0]));
     };
 
     getCard();
-  }, [cardName]);
+  }, [cardId]);
 
   //console.log(cardData)//Check
   //console.log(cardData.name)//Check

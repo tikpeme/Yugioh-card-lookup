@@ -22,7 +22,7 @@ function RelatedCards() {
     getCard();
   }, []);
 
-  console.log(referenceCard.archetype);
+  //console.log(referenceCard.archetype);
 
   if (referenceCard.archetype) {
     console.log(referenceCard.archetype);
