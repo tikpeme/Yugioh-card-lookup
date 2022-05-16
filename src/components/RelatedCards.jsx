@@ -1,6 +1,6 @@
 import React from "react";
-import { useRef, useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+
 import axios from "axios";
 import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -23,9 +23,11 @@ function DisplayRelatedCards({ referenceCard }) {
         });
       console.log(relatedCards);
     } else {
+      console.log(referenceCard.card_sets[0].set_name);
+
       axios
         .get(
-          `https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=${referenceCard.cardset[0]}`
+          `https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=${referenceCard.card_sets[0].set_name}`
         )
         .then((response) => {
           setRelated(response.data.data);
@@ -38,6 +40,13 @@ function DisplayRelatedCards({ referenceCard }) {
   return (
     <div>
       {console.log(relatedCards)}
+      <Title>
+        Related Cards. (
+        {referenceCard.archetype
+          ? `Archetype: ` + referenceCard.archetype
+          : `card set: ` + referenceCard.card_sets[0].set_name}
+        )
+      </Title>
       <Grid>
         {relatedCards.map &&
           relatedCards.map((card, idx) => {
@@ -88,6 +97,13 @@ function RelatedCards() {
   );
 }
 
+const Title = styled.div`
+  color: violet;
+  font-size: 30px;
+  text-align: center;
+  width: auto;
+  margin: auto;
+`;
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
