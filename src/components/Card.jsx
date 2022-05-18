@@ -34,6 +34,15 @@ function CardDisplay({ data }) {
           title.style.color = "white";
           title.style.borderBottom = "1px gold solid";
           break;
+        case "XYZ Pendulum Effect Monster":
+          plate.style.backgroundImage = "linear-gradient(#171818, #118984)";
+          details.forEach((detail) => {
+            detail.style.backgroundColor = "#a7d3d2";
+            detail.style.borderColor = "#45403c";
+          });
+          title.style.color = "white";
+          title.style.borderBottom = "1px gold solid";
+          break;
         case "Synchro Monster":
           plate.style.backgroundColor = "#e9e6e5";
           details.forEach((detail) => {
@@ -43,17 +52,19 @@ function CardDisplay({ data }) {
           title.style.color = "black";
           title.style.borderBottom = "1px black solid";
           break;
+        case "Synchro Pendulum Effect Monster":
+          plate.style.backgroundImage = "linear-gradient(#e9e6e5, #118984)";
+          details.forEach((detail) => {
+            detail.style.backgroundColor = "#a7d3d2";
+            detail.style.borderColor = "#45403c";
+          });
+          title.style.color = "black";
+          title.style.borderBottom = "1px black solid";
+          break;
         case "Effect Monster":
-          plate.style.backgroundColor = "#bb6f41";
-          details.forEach((detail) => {
-            detail.style.backgroundColor = "#e5cabe";
-            detail.style.borderColor = "#d16813";
-          });
-          title.style.color = "black";
-          title.style.borderBottom = "1px black solid";
-          break;
-
         case "Union Effect Monster":
+        case "Tuner Monster":
+        case "Gemini Monster":
           plate.style.backgroundColor = "#bb6f41";
           details.forEach((detail) => {
             detail.style.backgroundColor = "#e5cabe";
@@ -62,16 +73,19 @@ function CardDisplay({ data }) {
           title.style.color = "black";
           title.style.borderBottom = "1px black solid";
           break;
-        case "Ritual Effect Monster":
-          plate.style.backgroundColor = "#527abe";
+        case "Pendulum Monster":
+        case "Pendulum Tuner Effect Monster":
+        case "Pendulum Effect Monster":
+          plate.style.backgroundImage = "linear-gradient(#b25426, #118984)";
           details.forEach((detail) => {
-            detail.style.backgroundColor = "#c4d3e4";
-            detail.style.borderColor = "#d16813";
+            detail.style.backgroundColor = "#a7d3d2";
+            detail.style.borderColor = "#45403c";
           });
           title.style.color = "black";
           title.style.borderBottom = "1px black solid";
           break;
         case "Ritual Monster":
+        case "Ritual Effect Monster":
           plate.style.backgroundColor = "#527abe";
           details.forEach((detail) => {
             detail.style.backgroundColor = "#c4d3e4";
@@ -85,6 +99,15 @@ function CardDisplay({ data }) {
           details.forEach((detail) => {
             detail.style.backgroundColor = "#dbc6e1";
             detail.style.borderColor = "#d16813";
+          });
+          title.style.color = "black";
+          title.style.borderBottom = "1px black solid";
+          break;
+        case "Pendulum Effect Fusion Monster":
+          plate.style.backgroundImage = "linear-gradient(#893f97, #118984)";
+          details.forEach((detail) => {
+            detail.style.backgroundColor = "#a7d3d2";
+            detail.style.borderColor = "#45403c";
           });
           title.style.color = "black";
           title.style.borderBottom = "1px black solid";

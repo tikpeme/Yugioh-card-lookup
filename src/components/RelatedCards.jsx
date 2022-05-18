@@ -7,6 +7,9 @@ import styled from "styled-components";
 
 function DisplayRelatedCards({ referenceCard }) {
   const [relatedCards, setRelated] = useState([]);
+  const [relatedCardsSet, setRelatedCardsSet] = useState([]);
+  const [relatedCardsSet2, setRelatedCardsSet2] = useState([]);
+
   console.log(referenceCard.archetype);
 
   useEffect(() => {
@@ -22,48 +25,77 @@ function DisplayRelatedCards({ referenceCard }) {
           setRelated(response.data.data);
         });
       console.log(relatedCards);
-    } else {
+    }
+    if (referenceCard.card_sets) {
       console.log(referenceCard.card_sets[0].set_name);
-
       axios
         .get(
           `https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=${referenceCard.card_sets[0].set_name}`
         )
         .then((response) => {
-          setRelated(response.data.data);
+          setRelatedCardsSet(response.data.data);
         });
-      console.log(relatedCards);
+      console.log(relatedCardsSet);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div>
-      {console.log(relatedCards)}
-      <Title>
-        Related Cards. (
-        {referenceCard.archetype
-          ? `Archetype: ` + referenceCard.archetype
-          : `card set: ` + referenceCard.card_sets[0].set_name}
-        )
-      </Title>
-      <Grid>
-        {relatedCards.map &&
-          relatedCards.map((card, idx) => {
-            return (
-              <div key={idx}>
-                <SLink to={"/Card/" + card.id}>
-                  <CardName>{card.name}</CardName>
-                  <Img
-                    className="image"
-                    src={card.card_images[0].image_url}
-                    alt={card.name}
-                  />
-                </SLink>
-              </div>
-            );
-          })}
-      </Grid>
+      {referenceCard.archetype && (
+        <div
+          className="Archetype"
+          style={{ margin: "40px", border: "solid violet 5px" }}
+        >
+          <Title>
+            Related Cards ({`Archetype: ` + referenceCard.archetype})
+          </Title>
+          <Grid>
+            {relatedCards.map &&
+              relatedCards.map((card, idx) => {
+                return (
+                  <div key={idx}>
+                    <SLink to={"/Card/" + card.id}>
+                      <CardName>{card.name}</CardName>
+                      <Img
+                        className="image"
+                        src={card.card_images[0].image_url}
+                        alt={card.name}
+                      />
+                    </SLink>
+                  </div>
+                );
+              })}
+          </Grid>
+        </div>
+      )}
+      {referenceCard.card_sets && (
+        <div
+          className="firstCardSet"
+          style={{ margin: "40px", border: "solid violet 5px" }}
+        >
+          <Title>
+            Related Cards ({`card set: ` + referenceCard.card_sets[0].set_name})
+          </Title>
+          <Grid>
+            {relatedCardsSet.map &&
+              relatedCardsSet.map((card, idx) => {
+                return (
+                  <div key={idx}>
+                    <SLink to={"/Card/" + card.id}>
+                      <CardName>{card.name}</CardName>
+                      <Img
+                        className="image"
+                        src={card.card_images[0].image_url}
+                        alt={card.name}
+                      />
+                    </SLink>
+                  </div>
+                );
+              })}
+          </Grid>
+        </div>
+      )}
     </div>
   );
 }

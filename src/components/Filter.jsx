@@ -277,5 +277,13 @@ const SButtons = styled.button`
   margin: 0.4em;
   border-radius: 60%;
   background-color: #bcb9b9;
+  :hover {
+    cursor: pointer;
+  }
+  :active {
+    transform: translateY(2px);
+    box-shadow: 0 0 0;
+    outline: 0;
+  }
 `;
 export default Filter;

@@ -7,13 +7,21 @@ import cardBack from "../images/Card_Back.jpeg";
 import "../styles/SpotlightCard.css";
 
 function SpotlightCard() {
-  const [spotLight, setSpotLight] = useState(); //Create a state for the random spotlight card
+  const [spotLight, setSpotLight] = useState([]); //Create a state for the random spotlight card
+
+  const randomCard = (arr) => {
+    console.log(arr);
+    return arr[Math.floor(Math.random() * arr.length)];
+  };
 
   //Make API call to Yugioh card data base to get a radom card
+
   const getSpotLight = async () => {
-    fetch(`https://db.ygoprodeck.com/api/v7/randomcard.php`) // API call, no key required
+    fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?format=tcg`) // API call, no key required
       .then((res) => res.json()) // Provide information from API JSON format
-      .then((data) => setSpotLight(data));
+      .then((data) => {
+        setSpotLight(randomCard(data.data));
+      });
     /*
          To consider eventually adding more code to make the spot light card be more of rare cards.  Also to utilize local  storage 
         */
@@ -32,7 +40,8 @@ function SpotlightCard() {
 
   return (
     <div>
-      {spotLight && (
+      {console.log(spotLight)}
+      {spotLight.name && (
         <Sdiv>
           <SLink to={"/Card/" + spotLight.id}>
             <Sh2> You drew : {spotLight.name}!</Sh2>
@@ -91,5 +100,9 @@ const Sbutton = styled.button`
   color: rgb(220, 218, 218);
   font-family: "Shrikhand";
   text-shadow: 2px 2px #ba1bba;
+
+  :active {
+    transform: translateY(2px);
+  }
 `;
 export default SpotlightCard;

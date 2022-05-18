@@ -1,28 +1,30 @@
-import axios from "axios";
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 import "../styles/Carousel.css";
 
-function SynchroCarousel() {
-  const [synchroArray, SetSynchroArray] = useState([]);
+function FusionCarousel() {
+  const [fusionArray, setFusionArray] = useState([]);
+
   const carousel = useRef();
 
   useEffect(() => {
-    const getSynchroCards = async () => {
+    //make api call to server for XYZ monsters of rank 7 and above
+    const getXyz = async () => {
       axios
         .get(
-          `https://db.ygoprodeck.com/api/v7/cardinfo.php?type=Synchro%20Monster&level=gt8`
+          `https://db.ygoprodeck.com/api/v7/cardinfo.php?type=Fusion%20Monster&level=gt7`
         )
         .then((response) => {
-          SetSynchroArray(response.data.data);
+          setFusionArray(response.data.data);
         });
-      console.log(synchroArray);
     };
-    getSynchroCards();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    getXyz();
+    //console.log(carousel.current.scrollWidth, carousel.current.offsetWidth)
+    //  setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth )
   }, []);
 
   //apply Fisher-Yates (aka Knuth) shuffle
@@ -42,15 +44,15 @@ function SynchroCarousel() {
         array[currentIndex],
       ];
     }
-    array.length = 72;
-    console.log("array.length is : " + array.length);
+
+    array.length = 72; // Set number of  cards in carousel to be the same
     return array;
   };
 
   return (
-    synchroArray && (
+    fusionArray && (
       <div>
-        <h1> Synchro Monsters </h1>
+        <h1> Fusion Monsters </h1>
         <motion.div ref={carousel} className="carousel">
           <motion.div
             drag="x"
@@ -65,7 +67,7 @@ function SynchroCarousel() {
             }}
             className="inner-carousel"
           >
-            {randomizeArray(synchroArray).map((card) => {
+            {randomizeArray(fusionArray).map((card) => {
               return (
                 <motion.div className="item" key={card.id}>
                   <NavLink to={"/Card/" + card.id}>
@@ -81,4 +83,4 @@ function SynchroCarousel() {
   );
 }
 
-export default SynchroCarousel;
+export default FusionCarousel;

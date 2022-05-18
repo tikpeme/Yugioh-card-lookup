@@ -1,32 +1,46 @@
-import axios from "axios";
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 import "../styles/Carousel.css";
 
-function SynchroCarousel() {
-  const [synchroArray, SetSynchroArray] = useState([]);
+function RitualCarousel() {
+  const [RitualArray, setRitualArray] = useState([]);
+  const [RitualEffectArray, setRitualEffectArray] = useState([]);
+
   const carousel = useRef();
 
   useEffect(() => {
-    const getSynchroCards = async () => {
+    //make api call to server for XYZ monsters of rank 7 and above
+    const getRitualMonster = async () => {
       axios
         .get(
-          `https://db.ygoprodeck.com/api/v7/cardinfo.php?type=Synchro%20Monster&level=gt8`
+          `https://db.ygoprodeck.com/api/v7/cardinfo.php?type=Ritual%20Monster&level=gt6`
         )
         .then((response) => {
-          SetSynchroArray(response.data.data);
+          setRitualArray(response.data.data);
         });
-      console.log(synchroArray);
     };
-    getSynchroCards();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const getRitualEffectMonster = async () => {
+      axios
+        .get(
+          `https://db.ygoprodeck.com/api/v7/cardinfo.php?type=Ritual%20Effect%20Monster&level=gt8`
+        )
+        .then((response) => {
+          setRitualEffectArray(response.data.data);
+        });
+    };
+    getRitualMonster();
+    getRitualEffectMonster();
+    //console.log(carousel.current.scrollWidth, carousel.current.offsetWidth)
+    //  setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth )
   }, []);
 
   //apply Fisher-Yates (aka Knuth) shuffle
-  const randomizeArray = (array) => {
+  const randomizeArray = (array1, array2) => {
+    let array = array1.concat(array2);
     let currentIndex = array.length,
       randomIndex;
 
@@ -42,15 +56,16 @@ function SynchroCarousel() {
         array[currentIndex],
       ];
     }
-    array.length = 72;
-    console.log("array.length is : " + array.length);
+
+    array.length = 72; // Set number of  cards in carousel to be the same
     return array;
   };
 
   return (
-    synchroArray && (
+    RitualArray && (
       <div>
-        <h1> Synchro Monsters </h1>
+        {console.log(RitualArray)}
+        <h1> Ritual Monsters </h1>
         <motion.div ref={carousel} className="carousel">
           <motion.div
             drag="x"
@@ -65,7 +80,7 @@ function SynchroCarousel() {
             }}
             className="inner-carousel"
           >
-            {randomizeArray(synchroArray).map((card) => {
+            {randomizeArray(RitualArray, RitualEffectArray).map((card) => {
               return (
                 <motion.div className="item" key={card.id}>
                   <NavLink to={"/Card/" + card.id}>
@@ -81,4 +96,4 @@ function SynchroCarousel() {
   );
 }
 
-export default SynchroCarousel;
+export default RitualCarousel;
