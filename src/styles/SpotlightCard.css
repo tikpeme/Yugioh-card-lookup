@@ -82,7 +82,9 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    margin-bottom: 0px;
+    margin-bottom: 30px;
+
+    margin-bottom: 30px;
   }
   .flip-card {
     width: 336.8px;
