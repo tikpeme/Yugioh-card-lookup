@@ -15,6 +15,6 @@
   cursor: grab;
   overflow: hidden;
   margin: 20px auto;
-  width: 100em;
+  width: inherit;
   background: rgba(179, 22, 171, 0.54);
 }

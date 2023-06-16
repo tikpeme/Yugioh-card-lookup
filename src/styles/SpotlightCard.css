@@ -1,3 +1,6 @@
+.spotlight-card-section {
+  height: 100vh;
+}
 .flip-card {
   background-color: transparent;
   width: 421px;
@@ -30,4 +33,38 @@
   transform: rotateY(180deg);
   width: 421px;
   height: 614px;
+}
+
+@media (max-width: 768px) {
+  .flip-card {
+    width: 421px;
+    height: 614px;
+  }
+  .flip-card-inner {
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  .flip-card-inner img {
+    width: 421px;
+    height: 614px;
+  }
+
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    width: 421px;
+    height: 614px;
+    backface-visibility: hidden;
+  }
+
+  /* Style the back side */
+  .flip-card-back {
+    transform: rotateY(180deg);
+    width: 421px;
+    height: 614px;
+  }
 }

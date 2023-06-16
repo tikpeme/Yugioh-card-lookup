@@ -39,7 +39,7 @@ function SpotlightCard() {
   }, []);
 
   return (
-    <div>
+    <div className="spotlight-card-section">
       {console.log(spotLight)}
       {spotLight.name && (
         <Sdiv>
@@ -62,7 +62,7 @@ function SpotlightCard() {
         </Sdiv>
       )}
       {spotLight && console.log(spotLight.name)}
-      <Sbutton onClick={() => drawCard()}> Draw! </Sbutton>
+      <Sbutton onClick={() => drawCard()}> Shuffle Draw! </Sbutton>
     </div>
   );
 }

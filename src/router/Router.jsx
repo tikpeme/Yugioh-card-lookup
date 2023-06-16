@@ -1,6 +1,7 @@
 import React from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Route, Routes, useLocation } from "react-router-dom";
+
 import Home from "../pages/Home";
 import Results from "../components/Results";
 import ErrorPage from "../components/ErrorPage";
@@ -12,15 +13,14 @@ function Router() {
   const location = useLocation();
 
   return (
-    <AnimatePresence>
-      <Routes location={location} key={location.pathname}>
+    <AnimatePresence exitBeforeEnter>
+      <Routes location={location}>
         <Route path="/" element={<Home />} />
         <Route
           path="/searched/:searchTerm"
           element={
             <Results>
-              {" "}
-              <Navigation />{" "}
+              <Navigation />
             </Results>
           }
         />

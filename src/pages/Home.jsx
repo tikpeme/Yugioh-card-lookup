@@ -8,7 +8,7 @@ import XYZCarousel from "../components/XYZCarousel";
 function Home() {
   return (
     <div>
-      <SpotlightCard />
+      <SpotlightCard style={{ height: "100vh" }} />
       <RitualCarousel />
       <FusionCarousel />
       <SynchroCarousel />
