@@ -87,8 +87,8 @@
     margin-bottom: 30px;
   }
   .flip-card {
-    width: 336.8px;
-    height: 491.2px;
+    width: 294.7px;
+    height: 429.8px;
   }
   .flip-card-inner {
     transition: transform 0.8s;
@@ -96,8 +96,8 @@
   }
 
   .flip-card-inner img {
-    width: 336.8px;
-    height: 491.2px;
+    width: 294.7px;
+    height: 429.8px;
   }
 
   .flip-card:hover .flip-card-inner {
@@ -106,14 +106,14 @@
   .flip-card-front,
   .flip-card-back {
     position: absolute;
-    width: 336.8px;
-    height: 491.2px;
+    width: 294.7px;
+    height: 429.8px;
     backface-visibility: hidden;
   }
 
   .flip-card-back {
     transform: rotateY(180deg);
-    width: 336.8px;
-    height: 491.2px;
+    width: 294.7px;
+    height: 429.8px;
   }
 }
