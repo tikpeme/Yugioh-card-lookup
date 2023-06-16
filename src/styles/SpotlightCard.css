@@ -1,5 +1,7 @@
 .spotlight-card-section {
-  height: 100vh;
+  margin-top: 100px;
+
+  margin-bottom: 100px;
 }
 .flip-card {
   background-color: transparent;
@@ -36,6 +38,11 @@
 }
 
 @media (max-width: 768px) {
+  .spotlight-card-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
   .flip-card {
     width: 421px;
     height: 614px;
