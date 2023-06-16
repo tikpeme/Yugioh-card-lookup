@@ -37,8 +37,13 @@ function DisplayRelatedCards({ referenceCard }) {
         });
       console.log(relatedCardsSet);
     }
+    document.documentElement.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "center",
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [referenceCard]);
 
   return (
     <div>
@@ -116,7 +121,12 @@ function RelatedCards() {
         });
     };
     getCard();
-  }, []);
+    document.documentElement.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "center",
+    });
+  }, [cardId]);
 
   //console.log(referenceCard.archetype);
 
@@ -139,8 +149,8 @@ const Title = styled.div`
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  grid-gap: 70px;
-  margin: auto 30px;
+  grid-gap: 40px;
+  margin: auto;
   text-align: center;
 `;
 

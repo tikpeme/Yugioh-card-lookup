@@ -17,6 +17,7 @@ function CardDisplay({ data }) {
 
       switch (data.type) {
         case "Normal Monster":
+          plate.style.backgroundImage = "none";
           plate.style.backgroundColor = "#c18f4d";
           details.forEach((detail) => {
             detail.style.backgroundColor = "#ecdec4";
@@ -26,6 +27,8 @@ function CardDisplay({ data }) {
           title.style.borderBottom = "1px black solid";
           break;
         case "XYZ Monster":
+          plate.style.backgroundImage = "none";
+
           plate.style.backgroundColor = "#171818";
           details.forEach((detail) => {
             detail.style.backgroundColor = "grey";
@@ -44,6 +47,7 @@ function CardDisplay({ data }) {
           title.style.borderBottom = "1px gold solid";
           break;
         case "Synchro Monster":
+          plate.style.backgroundImage = "none";
           plate.style.backgroundColor = "#e9e6e5";
           details.forEach((detail) => {
             detail.style.backgroundColor = "#f5f4f2";
@@ -65,6 +69,7 @@ function CardDisplay({ data }) {
         case "Union Effect Monster":
         case "Tuner Monster":
         case "Gemini Monster":
+          plate.style.backgroundImage = "none";
           plate.style.backgroundColor = "#bb6f41";
           details.forEach((detail) => {
             detail.style.backgroundColor = "#e5cabe";
@@ -76,6 +81,7 @@ function CardDisplay({ data }) {
         case "Pendulum Monster":
         case "Pendulum Tuner Effect Monster":
         case "Pendulum Effect Monster":
+          plate.style.backgroundImage = "none";
           plate.style.backgroundImage = "linear-gradient(#b25426, #118984)";
           details.forEach((detail) => {
             detail.style.backgroundColor = "#a7d3d2";
@@ -86,6 +92,7 @@ function CardDisplay({ data }) {
           break;
         case "Ritual Monster":
         case "Ritual Effect Monster":
+          plate.style.backgroundImage = "none";
           plate.style.backgroundColor = "#527abe";
           details.forEach((detail) => {
             detail.style.backgroundColor = "#c4d3e4";
@@ -95,6 +102,7 @@ function CardDisplay({ data }) {
           title.style.borderBottom = "1px black solid";
           break;
         case "Fusion Monster":
+          plate.style.backgroundImage = "none";
           plate.style.backgroundColor = "#893f97";
           details.forEach((detail) => {
             detail.style.backgroundColor = "#dbc6e1";
@@ -113,6 +121,7 @@ function CardDisplay({ data }) {
           title.style.borderBottom = "1px black solid";
           break;
         case "Link Monster":
+          plate.style.backgroundImage = "none";
           plate.style.backgroundColor = "#2972a8";
           details.forEach((detail) => {
             detail.style.backgroundColor = "#b9c9dc";
@@ -123,6 +132,7 @@ function CardDisplay({ data }) {
           break;
 
         case "Spell Card":
+          plate.style.backgroundImage = "none";
           plate.style.backgroundColor = "#058776";
           details.forEach((detail) => {
             detail.style.backgroundColor = "#b7dcd5";
@@ -132,6 +142,7 @@ function CardDisplay({ data }) {
           title.style.borderBottom = "1px black solid";
           break;
         case "Trap Card":
+          plate.style.backgroundImage = "none";
           plate.style.backgroundColor = "#ae377d";
           details.forEach((detail) => {
             detail.style.backgroundColor = "#e6c4d9";
@@ -258,11 +269,23 @@ function Card() {
   //console.log(cardData.name)//Check
 
   //Ensure that states variable is updated before rendering
-  return <div>{cardData.name && <CardDisplay data={cardData} />}</div>;
+  return (
+    <div
+      style={{
+        width: "100vw",
+        display: "flex",
+        margin: "auto",
+        justifyContent: "center",
+        position: "relative",
+      }}
+    >
+      {cardData.name && <CardDisplay data={cardData} />}
+    </div>
+  );
 }
 
 const Plate = styled.div`
-  border: 2px grey solid;
+  border: 1px grey solid;
   border-radius: 1rem;
   margin: 2rem auto;
 
@@ -272,8 +295,10 @@ const Plate = styled.div`
   box-shadow: 0 0 30px 5px grey;
 
   background-color: #aba3a3;
-  padding: 2.5rem;
+  padding: 1.5rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Cardcontent = styled.div`
